@@ -73,19 +73,19 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
           <div className="flex gap-1 p-1 bg-slate-100 rounded-xl overflow-hidden shadow-inner flex-1 md:flex-initial">
             <button
               onClick={() => setFilterType('ALL')}
-              className={`flex-1 md:px-4 py-1.5 text-[10px] font-bold rounded-lg transition-all ${filterType === 'ALL' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-400'}`}
+              className={`flex-1 md:px-6 py-3 text-base font-bold rounded-xl transition-all ${filterType === 'ALL' ? 'bg-white shadow-md text-indigo-600' : 'text-slate-400'}`}
             >
               Tất cả
             </button>
             <button
               onClick={() => setFilterType(TransactionType.INCOME)}
-              className={`flex-1 md:px-4 py-1.5 text-[10px] font-bold rounded-lg transition-all ${filterType === TransactionType.INCOME ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-400'}`}
+              className={`flex-1 md:px-6 py-3 text-base font-bold rounded-xl transition-all ${filterType === TransactionType.INCOME ? 'bg-white shadow-md text-emerald-600' : 'text-slate-400'}`}
             >
               Thu nhập
             </button>
             <button
               onClick={() => setFilterType(TransactionType.EXPENSE)}
-              className={`flex-1 md:px-4 py-1.5 text-[10px] font-bold rounded-lg transition-all ${filterType === TransactionType.EXPENSE ? 'bg-white shadow-sm text-red-500' : 'text-slate-400'}`}
+              className={`flex-1 md:px-6 py-3 text-base font-bold rounded-xl transition-all ${filterType === TransactionType.EXPENSE ? 'bg-white shadow-md text-red-500' : 'text-slate-400'}`}
             >
               Chi phí
             </button>
@@ -93,12 +93,12 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
 
           <div className="flex items-center gap-4 sm:ml-auto">
             {/* Month Selector */}
-            <div className="flex items-center gap-2">
-              <label className="text-[10px] font-bold text-slate-400 uppercase">Tháng</label>
+            <div className="flex items-center gap-3">
+              <label className="text-sm font-black text-slate-400 uppercase tracking-wider">Tháng</label>
               <select
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(e.target.value === 'all' ? 'all' : parseInt(e.target.value))}
-                className="text-xs bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-indigo-500 py-1.5 pl-2 pr-8 font-bold text-slate-700 shadow-sm"
+                className="text-lg bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 py-3 pl-4 pr-10 font-black text-slate-700 shadow-sm"
               >
                 <option value="all">Tất cả</option>
                 {Array.from({ length: 12 }, (_, i) => (
@@ -108,12 +108,12 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
             </div>
 
             {/* Year Selector */}
-            <div className="flex items-center gap-2">
-              <label className="text-[10px] font-bold text-slate-400 uppercase">Năm</label>
+            <div className="flex items-center gap-3">
+              <label className="text-sm font-black text-slate-400 uppercase tracking-wider">Năm</label>
               <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(e.target.value === 'all' ? 'all' : parseInt(e.target.value))}
-                className="text-xs bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-indigo-500 py-1.5 pl-2 pr-8 font-bold text-slate-700 shadow-sm"
+                className="text-lg bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-indigo-500 py-3 pl-4 pr-10 font-black text-slate-700 shadow-sm"
               >
                 <option value="all">Tất cả</option>
                 {years.map(y => (
@@ -124,7 +124,7 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-[10px] gap-2 font-bold uppercase tracking-wider">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center text-sm gap-3 font-bold uppercase tracking-widest">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="text-slate-400">Kết quả: {filtered.length} giao dịch</span>
             <span className="text-emerald-600">Tổng thu: {formatVND(totals.income)}</span>
