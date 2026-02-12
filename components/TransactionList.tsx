@@ -69,22 +69,22 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
       {/* Filters Section */}
       <div className="bg-white p-6 rounded-[2.5rem] shadow-xl border border-slate-100 space-y-6">
         {/* Row 1: Type Filter */}
-        <div className="flex gap-2 p-1.5 bg-slate-100 rounded-[1.5rem] overflow-hidden shadow-inner">
+        <div className="flex gap-2 p-1.5 bg-slate-100 rounded-[1.5rem] overflow-hidden shadow-inner font-black">
           <button
             onClick={() => setFilterType('ALL')}
-            className={`flex-1 py-4 text-lg font-black rounded-[1.2rem] transition-all ${filterType === 'ALL' ? 'bg-white shadow-md text-indigo-600' : 'text-slate-500'}`}
+            className={`flex-1 py-3 text-lg rounded-[1.2rem] transition-all ${filterType === 'ALL' ? 'bg-white shadow-md text-indigo-600' : 'text-slate-500'}`}
           >
-            TÁT CẢ
+            TẤT CẢ
           </button>
           <button
             onClick={() => setFilterType(TransactionType.INCOME)}
-            className={`flex-1 py-4 text-lg font-black rounded-[1.2rem] transition-all ${filterType === TransactionType.INCOME ? 'bg-white shadow-md text-emerald-600' : 'text-slate-500'}`}
+            className={`flex-1 py-3 text-lg rounded-[1.2rem] transition-all ${filterType === TransactionType.INCOME ? 'bg-white shadow-md text-emerald-600' : 'text-slate-500'}`}
           >
             THU NHẬP
           </button>
           <button
             onClick={() => setFilterType(TransactionType.EXPENSE)}
-            className={`flex-1 py-4 text-lg font-black rounded-[1.2rem] transition-all ${filterType === TransactionType.EXPENSE ? 'bg-white shadow-md text-red-500' : 'text-slate-500'}`}
+            className={`flex-1 py-3 text-lg rounded-[1.2rem] transition-all ${filterType === TransactionType.EXPENSE ? 'bg-white shadow-md text-red-500' : 'text-slate-500'}`}
           >
             CHI PHÍ
           </button>
@@ -93,11 +93,11 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
         {/* Row 2: Month & Year Picker */}
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] ml-3">Tháng</label>
+            <label className="text-lg font-black text-slate-400 uppercase tracking-wider ml-3">Tháng</label>
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value === 'all' ? 'all' : parseInt(e.target.value))}
-              className="w-full text-xl bg-slate-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 rounded-2xl py-4 px-4 font-black text-slate-700 shadow-sm transition-all appearance-none"
+              className="w-full text-lg bg-slate-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 rounded-2xl py-3 px-4 font-black text-slate-700 shadow-sm transition-all appearance-none"
             >
               <option value="all">Tất cả</option>
               {Array.from({ length: 12 }, (_, i) => (
@@ -106,11 +106,11 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
             </select>
           </div>
           <div className="space-y-2">
-            <label className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] ml-3">Năm</label>
+            <label className="text-lg font-black text-slate-400 uppercase tracking-wider ml-3">Năm</label>
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value === 'all' ? 'all' : parseInt(e.target.value))}
-              className="w-full text-xl bg-slate-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 rounded-2xl py-4 px-4 font-black text-slate-700 shadow-sm transition-all appearance-none"
+              className="w-full text-lg bg-slate-50 border-2 border-transparent focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-100 rounded-2xl py-3 px-4 font-black text-slate-700 shadow-sm transition-all appearance-none"
             >
               <option value="all">Tất cả</option>
               {years.map(y => (
@@ -123,46 +123,31 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
         {/* Rows 3-6: Information Summary */}
         <div className="space-y-4 pt-4">
           {/* Row 3: Result Count */}
-          <div className="flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-slate-100/50">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Thống kê lọc</span>
-              <span className="text-xl font-black text-slate-800">Kết quả tìm kiếm</span>
-            </div>
-            <span className="text-2xl font-black text-indigo-600 bg-indigo-50 px-4 py-2 rounded-xl">{filtered.length}</span>
+          <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100/50">
+            <span className="text-lg font-black text-slate-400 uppercase tracking-widest leading-none">Kết quả</span>
+            <span className="text-lg font-black text-slate-800">{filtered.length} giao dịch</span>
           </div>
 
           {/* Row 4: Total Income */}
-          <div className="flex items-center justify-between p-5 bg-emerald-50 rounded-2xl border border-emerald-100/50">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black text-emerald-600/60 uppercase tracking-widest leading-none mb-1">Dòng tiền vào</span>
-              <span className="text-xl font-black text-emerald-700">TỔNG THU NHẬP</span>
-            </div>
-            <span className="text-3xl font-black text-emerald-600">{formatVND(totals.income)}</span>
+          <div className="flex items-center justify-between p-4 bg-emerald-50 rounded-2xl border border-emerald-100/50">
+            <span className="text-lg font-black text-emerald-600/70 uppercase tracking-widest leading-none">Tổng thu nhập</span>
+            <span className="text-lg font-black text-emerald-600">{formatVND(totals.income)}</span>
           </div>
 
           {/* Row 5: Total Expense */}
-          <div className="flex items-center justify-between p-5 bg-red-50 rounded-2xl border border-red-100/50">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black text-red-500/60 uppercase tracking-widest leading-none mb-1">Dòng tiền ra</span>
-              <span className="text-xl font-black text-red-700">TỔNG CHI PHÍ</span>
-            </div>
-            <span className="text-3xl font-black text-red-500">{formatVND(totals.expense)}</span>
+          <div className="flex items-center justify-between p-4 bg-red-50 rounded-2xl border border-red-100/50">
+            <span className="text-lg font-black text-red-500/70 uppercase tracking-widest leading-none">Tổng chi phí</span>
+            <span className="text-lg font-black text-red-500">{formatVND(totals.expense)}</span>
           </div>
 
           {/* Row 6: Balance (Dư) */}
-          <div className={`flex flex-col p-6 rounded-[2.5rem] shadow-2xl relative overflow-hidden transition-all hover:scale-[1.01]
-          ${totals.income - totals.expense >= 0
-              ? 'bg-gradient-to-tr from-emerald-600 to-emerald-500 shadow-emerald-100'
-              : 'bg-gradient-to-tr from-rose-600 to-rose-500 shadow-rose-100'}`}
+          <div className={`flex items-center justify-between p-4 rounded-2xl shadow-lg transition-all
+            ${totals.income - totals.expense >= 0
+              ? 'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white'
+              : 'bg-gradient-to-r from-rose-600 to-rose-500 text-white'}`}
           >
-            {/* Decorative Sparkle */}
-            <div className="absolute top-[-20%] right-[-10%] w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-
-            <span className="text-[10px] font-black text-white/70 uppercase tracking-[0.3em] mb-3">Số dư hiện hữu (Dư)</span>
-            <div className="flex items-end justify-between">
-              <span className="text-5xl font-black text-white tracking-tighter shrink-0">{formatVND(totals.income - totals.expense)}</span>
-              <i className={`fas ${totals.income - totals.expense >= 0 ? 'fa-chart-line' : 'fa-chart-area'} text-5xl text-white/20`}></i>
-            </div>
+            <span className="text-lg font-black uppercase tracking-widest opacity-90">Số dư (Dư)</span>
+            <span className="text-lg font-black">{formatVND(totals.income - totals.expense)}</span>
           </div>
 
           {/* Reset Action */}
@@ -173,10 +158,10 @@ const TransactionList: React.FC<Props> = ({ transactions, onDelete, onEdit, onVi
                 setSelectedMonth('all');
                 setSelectedYear('all');
               }}
-              className="w-full mt-4 py-4 text-xs font-black text-slate-400 border-2 border-dashed border-slate-200 rounded-2xl hover:bg-slate-50 hover:border-slate-300 hover:text-slate-600 transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
+              className="w-full mt-2 py-3 text-lg font-black text-slate-400 border-2 border-dashed border-slate-200 rounded-2xl hover:bg-slate-50 transition-all flex items-center justify-center gap-2 uppercase tracking-widest"
             >
               <i className="fas fa-rotate-left"></i>
-              Xoá tất cả bộ lọc
+              Xoá bộ lọc
             </button>
           )}
         </div>
